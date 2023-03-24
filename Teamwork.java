@@ -19,18 +19,17 @@ public class Teamwork
         // before the surname of member 2...etc
         details[0] = "37";
         
-        details[1] = "Khidr";
-        details[2] = "Muhammed";
-        details[3] = "19031414";
+        details[1] = "Ali";
+        details[2] = "Sana";
+        details[3] = "19041936";
 
-        details[4] = "Tasker";
-        details[5] = "Harry";
-        details[6] = "19063128";
+        details[4] = "Khidr";
+        details[5] = "Muhammed";
+        details[6] = "19031414";
 
-        details[7] = "Ali";
-        details[8] = "Sana";
-        details[9] = "19041936";
-
+        details[7] = "Tasker";
+        details[8] = "Harry";
+        details[9] = "19063128";
 
         details[10] = "White";
         details[11] = "Charlie";
