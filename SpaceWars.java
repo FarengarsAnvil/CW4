@@ -13,7 +13,11 @@ import java.io.*;
 public class SpaceWars implements WIN 
 {
 
-//**************** WIN **************************  
+//**************** WIN **************************
+
+    private ArrayList<Force> dockingList;
+    private ArrayList<Force> activeStarFleet;
+    private ArrayList<Battle> battleList;
     /** Constructor requires the name of the admiral
      * @param admiral the name of the admiral
      */  
@@ -229,20 +233,55 @@ public class SpaceWars implements WIN
     }
     
 
+    //*******************************************************************************
+    private void setupForces() {
+
+        Wings wing1 =    new Wings("IW1", "Twister", 200, 200,false, 10);
+        Starship ship1 = new Starship("SS2", "Enterprise", 300, 200, false, 10, 20);
+        Warbird bird1 =  new Warbird("WB3", "Droop", 300, 100, false);
+        Wings wing2 =    new Wings("IW4", "Winger", 200, 400,false, 20);
+        Warbird bird2 =  new Warbird("WB5", "Hang", 400, 300, true);
+        Starship ship2 = new Starship("SS6", "Voyager", 450, 200, false, 15, 10);
+        Starship ship3 = new Starship("SS87", "Explorer", 120, 65, false, 4, 5);
+        Warbird bird3 =  new Warbird("WB9", "Hover", 300, 400, false);
+        Wings wing3 =    new Wings("IW10", "Flyer", 200, 100,false, 5);
+
+        dockingList.add(wing1);
+        dockingList.add(ship1);
+        dockingList.add(bird1);
+        dockingList.add(wing2);
+        dockingList.add(bird2);
+        dockingList.add(ship2);
+        dockingList.add(ship3);
+        dockingList.add(bird3);
+        dockingList.add(wing3);
+
+    }
+    
+    private void setupBattles() {
+
+        Battle battle1 = new Battle(1, BattleType.FIGHT, "Borg", 200, 300, 100);
+        Battle battle2 = new Battle(2, BattleType.SKIRMISH, "Kardassians", 700, 200, 120);
+        Battle battle3 = new Battle(3, BattleType.AMBUSH, "Ferengi", 100, 400, 150);
+        Battle battle4 = new Battle(4, BattleType.FIGHT, "Ewoks", 600, 600, 200);
+        Battle battle5 = new Battle(5, BattleType.AMBUSH, "Borg", 500, 400, 90);
+        Battle battle6 = new Battle(6, BattleType.SKIRMISH, "Borg", 150, 100, 100);
+        Battle battle7 = new Battle(7, BattleType.FIGHT, "Groaners", 150, 500, 300);
+        Battle battle8 = new Battle(8, BattleType.AMBUSH, "Wailers", 300, 300, 300);
+
+        battleList.add(battle1);
+        battleList.add(battle2);
+        battleList.add(battle3);
+        battleList.add(battle4);
+        battleList.add(battle5);
+        battleList.add(battle6);
+        battleList.add(battle7);
+        battleList.add(battle8);
+    }
+
 
     
-    //*******************************************************************************
-    private void setupForces()
-    {
-        
-    }
-    
-    private void setupBattles()
-    {
-        
-    }
-    
-    //**************************Add your own private methos here ***********************
+    //**************************Add your own private methods here ***********************
 
     
     

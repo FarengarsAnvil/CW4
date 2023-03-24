@@ -8,24 +8,24 @@ private String forceName;
 private int activationFee;
 private ForceState forceStatus;
 private int battleStrength;
-private Boolean hasCloak;
-private Boolean canSkirmish;
-private Boolean canAmbush;
-private Boolean canFight;
+public boolean hasCloak;
 
+//PERSONAL NOTE:: INSTEAD OF HAVING THESE FIELDS, HAVE METHODS WHICH RETURN A BOOLEAN WITH THESE FIELD NAMES.
 
     /** Constructor For the Force Class. Takes 8 Parameters::
      * @param fleetRef = String variable of a valid fleet reference
      * @param force = String variable representing the name of the Force
      * @param activationCost = Integer representing the activation Fee of the Force Object
-
+     * @param battleValue = Integer representing the Battle Strength of the Object.
+     * @param cloak = Boolean variable, if true: Has Cloak, if false: Does not have Cloak.
      */
-public  Force(String fleetRef, String force,  int activationCost, int battleValue) {
+public Force(String fleetRef, String force,  int activationCost, int battleValue, boolean cloak) {
     fleetReference = fleetRef;
     forceName = force;
     activationFee = activationCost;
     forceStatus = ForceState.DOCKED;
     battleStrength = battleValue;
+    hasCloak = cloak;
 
 }
 
@@ -49,4 +49,16 @@ public int getBattleStrength() {
 public ForceState getForceStatus() {
     return forceStatus;
 }
+
+// TODO:: Function determines whether Force can Skirmish or not
+public boolean canSkirmish() {
+    return true;
+}
+public boolean canAmbush() {
+   return true;
+}
+public boolean canFight() {
+   return true;
+}
+
 }
