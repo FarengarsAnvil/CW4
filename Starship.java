@@ -16,9 +16,11 @@ public class Starship extends Force{
         super(fleetRef, force, activationCost, battleValue, cloak);
         amountLaserCannons = lasers;
         amountPhotons = photons;
-
     }
-
+    // TODO:: Accessor method returns the amount of Laser cannons Starship object has.
+    public int getLaserCannons() { return amountLaserCannons;}
+    // TODO:: Accessor method returns the amount of Photons Starship object has.
+    public int getPhotons() { return amountPhotons; }
 
     @Override
     public boolean canAmbush() {
@@ -27,8 +29,9 @@ public class Starship extends Force{
 
     @Override
     public String toString() {
-        return "";
-    }
+        return "Force Name:" + getForceName() + " Reference:" + getFleetReference() + "Strength:" + getBattleStrength() + " Activation Fee:" + getActivationFee()
+                + " Cloak?:" + hasCloak + " Number Laser Cannons:" + amountLaserCannons + " Number Photons:" + amountPhotons;
 
+    }
 
 }

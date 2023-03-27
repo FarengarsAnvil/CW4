@@ -13,18 +13,16 @@ public class Warbird extends Force{
         super(fleetRef, force, activationCost, battleValue, cloak);
     }
 
-
     @Override
     public boolean canSkirmish() {
         return false;
     }
     @Override
     public boolean canAmbush() {
-
      if(hasCloak) {
          return true;
      }
      return false;
     }
-
+    
 }

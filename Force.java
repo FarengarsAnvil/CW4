@@ -26,7 +26,6 @@ public Force(String fleetRef, String force,  int activationCost, int battleValue
     forceStatus = ForceState.DOCKED;
     battleStrength = battleValue;
     hasCloak = cloak;
-
 }
 
 //TODO:: Accessor Method returns Fleet Reference.
@@ -49,16 +48,22 @@ public int getBattleStrength() {
 public ForceState getForceStatus() {
     return forceStatus;
 }
+// TODO:: Function returns boolean field hasCloak.
+public boolean getCloak() { return hasCloak; }
+// TODO:: Function determines whether Force Object can Skirmish or not
+public boolean canSkirmish() { return true; }
+    //TODO:: Function determines whether Force Object can Ambush or not
+public boolean canAmbush() {   return true; }
+// TODO:: Function determines whether Force Object can Fight or not
+public boolean canFight() { return true; };
 
-// TODO:: Function determines whether Force can Skirmish or not
-public boolean canSkirmish() {
-    return true;
+public void setState(ForceState type) {
+
+
 }
-public boolean canAmbush() {
-   return true;
-}
-public boolean canFight() {
-   return true;
+
+public String toString() {
+    return "Force Name:" + forceName + " Reference:" + fleetReference + "Strength:" + battleStrength + " Activation Fee:" + activationFee + " Cloak?:" + hasCloak;
 }
 
 }

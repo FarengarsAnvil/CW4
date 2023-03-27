@@ -15,11 +15,15 @@ private int strikerAmount;
         super(fleetRef, force, activationCost, battleValue, cloak);
         strikerAmount = strikers;
     }
-
-
     @Override
     public boolean canFight() {
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Force Name:" + getForceName() + " Reference:" + getFleetReference() + "Strength:" + getBattleStrength() + " Activation Fee:" + getActivationFee()
+                + " Cloak?:" + hasCloak + "Number of Strikers:" + strikerAmount;
     }
 
 }
