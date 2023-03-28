@@ -11,19 +11,18 @@ public Admiral(String admiral) {
     warChestFunds = 1000;
 }
 
-// TODO:: Accessor methods that return Object Fields.
-public String getAdmiralName() {
-    return admiralName;
- }
+// TODO:: Accessor methods that return Admiral name field.
+public String getAdmiralName() { return admiralName; }
+
+// TODO:: Accessor method returns Admiral field warChestFunds, an Integer.
 public int getWarChest() {
     return warChestFunds;
 }
 
-
+public void modifyWarChest(int value) { warChestFunds+= value; }
 
 // TODO:: Returns a String encapsulating all the Information about the Admiral.
 public String toString() {
     return   "Admiral Name:" + admiralName + "Warchest Balance:" + warChestFunds;
 }
-
 }

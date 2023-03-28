@@ -27,43 +27,49 @@ public Force(String fleetRef, String force,  int activationCost, int battleValue
     battleStrength = battleValue;
     hasCloak = cloak;
 }
-
 //TODO:: Accessor Method returns Fleet Reference.
 public String getFleetReference() {
     return fleetReference;
 }
+
 //TODO:: Accessor Method returns Name of Force.
 public String getForceName() {
     return forceName;
 }
+
 //TODO:: Accessor Method returns Activation Fee.
 public int getActivationFee() {
     return activationFee;
 }
+
 //TODO:: Accessor Method returns Battle Strength of Force Object
 public int getBattleStrength() {
     return battleStrength;
 }
+
 //TODO:: Accessor Method returns ForceState enum for the forceStatus of the Force Object.
 public ForceState getForceStatus() {
     return forceStatus;
 }
+
 // TODO:: Function returns boolean field hasCloak.
 public boolean getCloak() { return hasCloak; }
+
 // TODO:: Function determines whether Force Object can Skirmish or not
 public boolean canSkirmish() { return true; }
-    //TODO:: Function determines whether Force Object can Ambush or not
+
+// TODO:: Function determines whether Force object can partake in Ambush battles or not.
 public boolean canAmbush() {   return true; }
+
 // TODO:: Function determines whether Force Object can Fight or not
-public boolean canFight() { return true; };
+public boolean canFight() { return true; }
 
-public void setState(ForceState type) {
+// TODO:: Function changes the Force objects forceStatus to a Parameter ForceState.
+public void setState(ForceState type) {  forceStatus = type; }
 
-
-}
-
+// TODO:: Returns a String encompassing all the Fields of the force object.
 public String toString() {
-    return "Force Name:" + forceName + " Reference:" + fleetReference + "Strength:" + battleStrength + " Activation Fee:" + activationFee + " Cloak?:" + hasCloak;
+    return "Force Name: " + forceName + " Reference: " + fleetReference + " Strength: " + battleStrength + " Activation Fee: " + activationFee + " Cloak?: " + hasCloak;
 }
 
 }

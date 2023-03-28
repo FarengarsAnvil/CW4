@@ -1,7 +1,6 @@
 package cwk4;
 
 public class Battle {
-
     private int battleNumber;
     private BattleType battle;
     private String enemyName;
@@ -40,9 +39,8 @@ public class Battle {
     public int getBattleGains() {
         return battleGains;
     }
-    public int getBattleLosses() {
-        return battleLosses;
-    }
+    public int getBattleLosses() { return battleLosses; }
+
     // TODO:: Returns a Stringified Representation of a Battle Object.
     public String toString() {
         return "Battle Number:" + battleNumber + " Battle Type:" + battle + " Enemy Name:"

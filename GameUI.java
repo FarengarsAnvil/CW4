@@ -17,7 +17,7 @@ public class GameUI
         int choice;
         String admiralName;
         int result = -1;
-        System.out.println("Enter admiral's name");
+        System.out.println("Enter admiral's name:");
         String s = myIn.nextLine();
         WIN gp = new SpaceWars(s); 
         choice = 100;
@@ -40,21 +40,32 @@ public class GameUI
                 System.out.println(gp.getForceDetails(ref));
             } 
             else if (choice == 4) //activate Force
-            {   
+            {
+                System.out.println("Enter Force reference");
+                myIn.nextLine();
+                String ref = (myIn.nextLine()).trim();
+                System.out.println(gp.activateForce(ref));
                 
             }
             else if (choice == 5) //List ASFleet
             {
+                System.out.println(gp.getASFleet());
                 
             }
             else if (choice == 6) //engage in a battle
             {
-                
-                
+                System.out.println("Enter Battle Number:");
+                int battleNum = myIn.nextInt();
+                System.out.println(gp.doBattle(battleNum));
             }
             
             else if (choice == 7) //recall force
             {
+                System.out.println("Enter Force reference:");
+                myIn.nextLine();
+                String ref = (myIn.nextLine()).trim();
+                gp.recallForce(ref);
+                System.out.println("Docked Forces:" + gp.getForcesInDock());
                 
             }
             else if (choice==8) //view game state
