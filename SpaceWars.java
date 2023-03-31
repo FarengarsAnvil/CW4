@@ -22,13 +22,25 @@ public class SpaceWars implements WIN {
 
     /**
      * Constructor requires the name of the admiral
-     *
-     * @param admiral the name of the admiral
+     * @param admiral =  name of the admiral
      */
     public SpaceWars(String admiral) {
         admiral1 = new Admiral(admiral);
         setupForces();
         setupBattles();
+    }
+
+    /**
+     * 2nd constructor, takes 2 Parameters, Loads Battle Objects into the Battle List via reading a File.
+     * @param Admiral = name of the Admiral for the Admiral object.
+     * @param filename = takes a File name which is read to load the Battle Objects into the Battle list.
+     */
+    public SpaceWars(String Admiral, String filename) {
+        admiral1 = new Admiral(Admiral);
+        readBattles(filename);
+        setupForces();
+
+
     }
 
 
@@ -44,7 +56,7 @@ public class SpaceWars implements WIN {
      * Star Fleet,(or, "No forces" if Active Star Fleet is empty)
      **/
     public String toString() {
-        return admiral1.toString() + "\n" + " Active Fleet\n:" + getASFleet() + " Game Over? :" + (isDefeated());
+        return admiral1.toString() + "\n" + " Active Fleet:\n" + getASFleet() + " Game Over? :" + (isDefeated());
     }
 
     /**
@@ -99,7 +111,6 @@ public class SpaceWars implements WIN {
         if (d.length() == 0) {
             d = "No forces in UFF dock";
         }
-
         return f + "\n" + d + "\n" + s;
     }
 
@@ -192,12 +203,17 @@ public class SpaceWars implements WIN {
      * 2 if not enough money, -1 if no such force
      **/
     public int activateForce(String ref) {
+        // First check if the Force obj is in the Dock.
         if (isInUFFDock(ref)) {
+            //Iterate over dockingList and assign the Force object to the Variable temp.
             for (int i = 0; i < dockingList.size(); i++) {
                 if (dockingList.get(i).getFleetReference().equals(ref)) {
                     Force temp = dockingList.get(i);
+                    //If the activation Fee is <= to the current war-chest balance, we Activate the Force object and subtract from the war chest.
                     if (temp.getActivationFee() <= admiral1.getWarChest()) {
                         temp.setState(ForceState.ACTIVE);
+                        admiral1.modifyWarChest(temp.getActivationFee() * -1);
+                        //We then add temp to the ASF, and remove it from the docking List.
                         activeStarFleet.add(temp);
                         dockingList.remove(i);
                         return 0;
@@ -253,7 +269,6 @@ public class SpaceWars implements WIN {
     /**
      * Recalls a force from the Star Fleet(ASF) back to the UFF dock, but only
      * if it is in the Active Star Fleet(ASF)
-     *
      * @param ref is the reference code of the force
      **/
     public void recallForce(String ref) {
@@ -329,7 +344,7 @@ public class SpaceWars implements WIN {
      * @return an int showing the result of the battle (see above)
      */
     public int doBattle(int battleNo) {
-        //Check that the Battle No corresponds to an Actual battle Object.
+        //Check that the Battle No corresponds to an Actual battle Object. If it does not, return -1.
         if (!checkBattleExists(battleNo)) {
             return -1;
         } else {
@@ -359,13 +374,12 @@ public class SpaceWars implements WIN {
                 }
             }
         }
+        //No suitable forces in the ASF to do battle.
         return 1;
     }
 
 
     //*******************************************************************************
-
-
     /**
      * Instantiates all the Force objects in Appendix 1, and adds them to the Docking List collection.
      */
@@ -525,28 +539,13 @@ public class SpaceWars implements WIN {
       */
 
      private void readBattles(String fname) {
-         try {
-             // Create a FileinputStream and ObjInputStream Objects and pass fname as Param.
-             FileInputStream fileIn = new FileInputStream(fname);
-             ObjectInputStream objectIn =  new ObjectInputStream(fileIn);
-             //We loop through the file.
-             while(true) {
-                 Object temp = objectIn.readObject();
-                 // If the Line in the file is not Null:
-                 if(temp != null) {
-                     //We add it to the Battle List, casting temp as a Battle Object.
-                      battleList.add((Battle) temp);
-                 }
-                 //If the file we're reading does not have any Object data, we break the Loop.
-                 else if(temp == null) {
-                     break;
-                 }
-             }
+         // TODO:: Read the file. Take each line of the file and pass each bit of the file to a constructor object, then add the object to battleList.
+
+
+
+
+         
          }
-         catch(Exception e) {
-             e.printStackTrace();
-         }
-     }
 
 }
 
