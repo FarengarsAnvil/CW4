@@ -73,17 +73,17 @@ public class GameUI
                 System.out.println(gp.toString());
             }
             // Uncomment after task 3.5
-//             else if (choice == 9) // Task 3.5 only
-//             {
-//                 System.out.println("Write to file");
-//                 gp.saveGame("battles.txt");
-//             }
-//             else if (choice == 10) // Task 3.5 only
-//             {
-//                 System.out.println("Restore from file");
-//                 gp = gp.restoreGame("olenka.txt");
-//                 System.out.println(gp.toString());               
-//             }  
+            else if (choice == 9) // Task 3.5 only
+            {
+                System.out.println("Write to file");
+                 gp.saveGame("battles.txt");
+            }
+           else if (choice == 10) // Task 3.5 only
+             {
+                 System.out.println("Restore from file");
+                gp = gp.restoreGame("olenka.txt");
+                System.out.println(gp.toString());
+            }
         }  
         System.out.println("Thank-you");
     }
@@ -102,8 +102,8 @@ public class GameUI
         System.out.println("7. Recall a force");
         System.out.println("8. View the state of the game");
         //For Task 3.5 only
-//         System.out.println("9. Save this game");
-//         System.out.println("10. Restore a game");
+        System.out.println("9. Save this game");
+        System.out.println("10. Restore a game");
        
         
         while (choice < 0 || choice  > 10)
@@ -125,9 +125,7 @@ public class GameUI
             default: return "Error";
         }
     }
-    
 
-    
     public static void main(String[] args)
     {
         GameUI myGame = new GameUI();

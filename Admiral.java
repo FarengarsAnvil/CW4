@@ -1,6 +1,7 @@
 package cwk4;
+import java.io.Serializable;
 
-public class Admiral  {
+public class Admiral implements Serializable {
 
 private String admiralName;
 private int warChestFunds;

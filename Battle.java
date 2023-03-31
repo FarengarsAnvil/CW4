@@ -1,6 +1,9 @@
 package cwk4;
 
-public class Battle {
+import java.io.Serializable;
+
+public class Battle implements Serializable {
+
     private int battleNumber;
     private BattleType battle;
     private String enemyName;
@@ -23,7 +26,10 @@ public class Battle {
         battleLosses = battleLoss;
         battleGains = battleWins;
     }
-    // TODO:: Create Accessor Methods which return each individual field belonging to the Object.
+
+    /**
+     *Several accesor Methods which return an Field of the Battle object.
+     */
     public int getBattleNumber() {
         return battleNumber;
     }
@@ -41,7 +47,9 @@ public class Battle {
     }
     public int getBattleLosses() { return battleLosses; }
 
-    // TODO:: Returns a Stringified Representation of a Battle Object.
+    /**
+     * @return = String that encompasses all the Fields of the Battle object.
+     */
     public String toString() {
         return "Battle Number:" + battleNumber + " Battle Type:" + battle + " Enemy Name:"
                 + enemyName + " Enemy Strength:" + enemyStrength + " Battle Gains:" + battleGains + " Battle Losses:" + battleLosses;

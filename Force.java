@@ -1,7 +1,7 @@
 package cwk4;
+import java.io.Serializable;
 
-
-public class Force {
+public class Force implements Serializable {
 
 private String fleetReference;
 private String forceName;
@@ -67,8 +67,10 @@ public boolean canFight() { return true; }
 // TODO:: Function changes the Force objects forceStatus to a Parameter ForceState.
 public void setState(ForceState type) {  forceStatus = type; }
 
-// TODO:: Returns a String encompassing all the Fields of the force object.
-public String toString() {
+    /**
+     * @return = String that encompasses all the fields of the force object.
+     */
+    public String toString() {
     return "Force Name: " + forceName + " Reference: " + fleetReference + " Strength: " + battleStrength + " Activation Fee: " + activationFee + " Cloak?: " + hasCloak;
 }
 

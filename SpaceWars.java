@@ -50,7 +50,6 @@ public class SpaceWars implements WIN {
     /**
      * returns true if war chest <=0 AND the active Star Fleet(ASF) has no
      * forces which can be recalled.
-     *
      * @return true if war chest <=0 and the active Star Fleet(ASF) has no
      * forces which can be recalled.
      */
@@ -62,9 +61,9 @@ public class SpaceWars implements WIN {
     }
 
     /**
-     * returns the number of bit coins in the war chest
+     * returns the number of bit-coins in the war chest
      *
-     * @return the number of bit coins in the war chest
+     * @return the number of bit-coins in the war chest
      */
     public int getWarchest() {
         return admiral1.getWarChest();
@@ -365,6 +364,11 @@ public class SpaceWars implements WIN {
 
 
     //*******************************************************************************
+
+
+    /**
+     * Instantiates all the Force objects in Appendix 1, and adds them to the Docking List collection.
+     */
     private void setupForces() {
         Wings wing1 = new Wings("IW1", "Twister", 200, 200, false, 10);
         Starship ship1 = new Starship("SS2", "Enterprise", 300, 200, false, 10, 20);
@@ -385,6 +389,10 @@ public class SpaceWars implements WIN {
         dockingList.add(bird3);
         dockingList.add(wing3);
     }
+
+    /**
+     * Instantiates all the Battle objects in Appendix 1 and adds them to the battleList Collection.
+     */
 
     private void setupBattles() {
 
@@ -447,6 +455,10 @@ public class SpaceWars implements WIN {
         return false;
     }
 
+    /**
+     * @param battleNo = Integer variable that should be a Battle objects battle Number.
+     * @return = Returns a force object to fight the Battle corresponding to the battle number, if no suitabel force exist for the battle; it returns null.
+     */
     private Force getForceForBattle(int battleNo) {
         BattleType type1 = getBattleObj(battleNo).getBattle();
         for (int i = 0; i < activeStarFleet.size(); i++) {
@@ -473,31 +485,68 @@ public class SpaceWars implements WIN {
     //These methods are not needed until Task 3.5. Uncomment thmemto complete task 3.5
     // ***************   file write/read  *********************
 
-//     /** Writes whole game to the specified file
-//      * @param fname name of file storing requests
-//      */
-//     public void saveGame(String fname)
-//     {   // uses object serialisation 
-//         
-//     }
-//     
-//     /** reads all information about the game from the specified file 
-//      * and returns a SpaceWars object
-//      * @param fname name of file storing the game
-//      * @return the game (as a SpaceWars object)
-//      */
-//     public SpaceWars restoreGame(String fname)
-//     {    
-//         
-//     }
-// 
-//     /** Reads information about battles from the specified file into the appropriate collection
-//      * @param the name of the file
-//      */
-//     private void readBattles(String fname)
-//     { 
-//         
-//     }
+     /** Writes whole game to the specified file
+      * @param fname name of file storing requests
+      */
+    public void saveGame(String fname) {
+        try {
+            FileOutputStream fileOut = new FileOutputStream(fname);
+            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+            //this keyword pertains to the current Object, so we're saving the current object to a file.
+            objectOut.writeObject(this);
+            objectOut.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+     /** reads all information about the game from the specified file
+      * and returns a SpaceWars object
+      * @param fname name of file storing the game
+      * @return the game (as a SpaceWars object)
+      */
+     public SpaceWars restoreGame(String fname) {
+            try {
+                FileInputStream fileIn = new FileInputStream(fname);
+                ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+                //We cast what we read from the file as a SpaceWars object and then return it.
+                SpaceWars a =  (SpaceWars) objectIn.readObject();
+                return a;
+
+            } catch (Exception e) {
+                e.printStackTrace();
+        }
+        return null;
+     }
+
+     /** Reads information about battles from the specified file into the appropriate collection
+      * @param =  name of the file
+      */
+
+     private void readBattles(String fname) {
+         try {
+             // Create a FileinputStream and ObjInputStream Objects and pass fname as Param.
+             FileInputStream fileIn = new FileInputStream(fname);
+             ObjectInputStream objectIn =  new ObjectInputStream(fileIn);
+             //We loop through the file.
+             while(true) {
+                 Object temp = objectIn.readObject();
+                 // If the Line in the file is not Null:
+                 if(temp != null) {
+                     //We add it to the Battle List, casting temp as a Battle Object.
+                      battleList.add((Battle) temp);
+                 }
+                 //If the file we're reading does not have any Object data, we break the Loop.
+                 else if(temp == null) {
+                     break;
+                 }
+             }
+         }
+         catch(Exception e) {
+             e.printStackTrace();
+         }
+     }
 
 }
 

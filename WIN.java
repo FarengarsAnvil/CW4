@@ -138,15 +138,15 @@ public interface WIN extends Serializable
     
 
    // ***************   file write/read  *********************
-//    /** Writes whole game to the specified file
-//    * @param fname name of file storing requests
-//     */
-//   public void saveGame(String fname);
-//     
-//    /** reads all information about the game from the specified file 
-//     * and returns a SpaceWars object
-//     * @param fname name of file storing the game
-//     * @return the game (as a SpaceWars object)
-//     */
-//    public SpaceWars restoreGame(String fname);
+    /** Writes whole game to the specified file
+    * @param fname name of file storing requests
+     */
+   public void saveGame(String fname);
+
+    /** reads all information about the game from the specified file
+     * and returns a SpaceWars object
+     * @param fname name of file storing the game
+     * @return the game (as a SpaceWars object)
+     */
+   public SpaceWars restoreGame(String fname);
 }
