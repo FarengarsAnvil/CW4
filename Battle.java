@@ -31,21 +31,29 @@ public class Battle implements Serializable {
      *Several accesor Methods which return an Field of the Battle object.
      */
     public int getBattleNumber() {
+
         return battleNumber;
     }
     public BattleType getBattle() {
+
         return battle;
     }
     public String getEnemyName() {
+
         return enemyName;
     }
     public int getEnemyStrength() {
+
         return enemyStrength;
     }
     public int getBattleGains() {
+
         return battleGains;
     }
-    public int getBattleLosses() { return battleLosses; }
+    public int getBattleLosses() {
+
+        return battleLosses;
+    }
 
     /**
      * @return = String that encompasses all the Fields of the Battle object.

@@ -140,7 +140,7 @@ public class SpaceWars implements WIN {
         String s = "\n\n************ Forces available in UFFleet Dock********\n";
         String f = "";
         for (int i = 0; i < dockingList.size(); i++) {
-            f += dockingList.get(i).getForceName() + " , ";
+            f+=dockingList.get(i).toString() + " , ";
         }
         if (f.length() != 0) {
             return f;
@@ -222,7 +222,7 @@ public class SpaceWars implements WIN {
                     }
                 }
             }
-        } else if (!checkForceIsDestroyed(ref)) {
+        } else if (checkForceIsDestroyed(ref)) {
             return 1;
         }
         return -1;
@@ -274,6 +274,7 @@ public class SpaceWars implements WIN {
     public void recallForce(String ref) {
         for (int i = 0; i < activeStarFleet.size(); i++) {
             if (activeStarFleet.get(i).getFleetReference().equals(ref)) {
+                admiral1.modifyWarChest(activeStarFleet.get(i).getActivationFee() / 2);
                 dockingList.add(activeStarFleet.get(i));
                 activeStarFleet.get(i).setState(ForceState.DOCKED);
                 activeStarFleet.remove(i);
@@ -307,7 +308,7 @@ public class SpaceWars implements WIN {
      **/
     public String getBattle(int num) {
         if (getBattleObj(num) != null) {
-            getBattleObj(num).toString();
+            return getBattleObj(num).toString();
         }
         return "No such battle";
     }
@@ -321,7 +322,7 @@ public class SpaceWars implements WIN {
         String s = "\n************ All Battles ************\n";
         String f = "";
         for (int i = 0; i < battleList.size(); i++) {
-            f += battleList.get(i).getBattle() + " , ";
+            f+=battleList.get(i).toString() + " , " ;
 
         }
         return f;
@@ -351,7 +352,7 @@ public class SpaceWars implements WIN {
             //Given the Battle Object exists, we now check if we have an available force for the Battle.
             if(getForceForBattle(battleNo) != null) {
                 //If our Forces strength is Greater than the Enemies strength of the Battle Object
-                if(getForceForBattle(battleNo).getBattleStrength() > getBattleObj(battleNo).getEnemyStrength()) {
+                if(getForceForBattle(battleNo).getBattleStrength() >= getBattleObj(battleNo).getEnemyStrength()) {
                     //We then Add the Battle Gains to our Warchest Funds.
                     admiral1.modifyWarChest(getBattleObj(battleNo).getBattleGains());
                     return 0;
@@ -375,7 +376,9 @@ public class SpaceWars implements WIN {
             }
         }
         //No suitable forces in the ASF to do battle.
+        admiral1.modifyWarChest(getBattleObj(battleNo).getBattleLosses() * -1);
         return 1;
+
     }
 
 
@@ -390,7 +393,7 @@ public class SpaceWars implements WIN {
         Wings wing2 = new Wings("IW4", "Winger", 200, 400, false, 20);
         Warbird bird2 = new Warbird("WB5", "Hang", 400, 300, true);
         Starship ship2 = new Starship("SS6", "Voyager", 450, 200, false, 15, 10);
-        Starship ship3 = new Starship("SS87", "Explorer", 120, 65, false, 4, 5);
+        Starship ship3 = new Starship("SS7", "Explorer", 120, 65, false, 4, 5);
         Warbird bird3 = new Warbird("WB9", "Hover", 300, 400, false);
         Wings wing3 = new Wings("IW10", "Flyer", 200, 100, false, 5);
         dockingList.add(wing1);

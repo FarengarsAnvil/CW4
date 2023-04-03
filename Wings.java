@@ -23,7 +23,7 @@ private int strikerAmount;
     @Override
     public String toString() {
         return "Force Name:" + getForceName() + " Reference:" + getFleetReference() + " Strength:" + getBattleStrength() + " Activation Fee:" + getActivationFee()
-                + " Cloak?:" + hasCloak + " Number of Strikers:" + strikerAmount;
+                + " Cloak?:" + hasCloak + " Number of Strikers:" + strikerAmount + "Status:" + forceStatus.toString();
     }
 
 }

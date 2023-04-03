@@ -30,7 +30,7 @@ public class Starship extends Force{
     @Override
     public String toString() {
         return "Force Name:" + getForceName() + " Reference:" + getFleetReference() + " Strength:" + getBattleStrength() + " Activation Fee:" + getActivationFee()
-                + " Cloak?:" + hasCloak + " Number Laser Cannons:" + amountLaserCannons + " Number Photons:" + amountPhotons;
+                + " Cloak?:" + hasCloak + " Number Laser Cannons:" + amountLaserCannons + " Number Photons:" + amountPhotons + "Status:" + forceStatus.toString();
 
     }
 
