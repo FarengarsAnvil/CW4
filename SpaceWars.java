@@ -56,7 +56,7 @@ public class SpaceWars implements WIN {
      * Star Fleet,(or, "No forces" if Active Star Fleet is empty)
      **/
     public String toString() {
-        return admiral1.toString() + "\n" + " Active Fleet:\n" + getASFleet() + " Game Over? :" + (isDefeated());
+        return admiral1.toString() + "\n" + "Active Fleet:\n" + getASFleet() + "\nGame Over? : " + (isDefeated());
     }
 
     /**
@@ -218,6 +218,7 @@ public class SpaceWars implements WIN {
                         dockingList.remove(i);
                         return 0;
                     } else {
+                        //if not enough funds
                         return 2;
                     }
                 }
@@ -260,7 +261,7 @@ public class SpaceWars implements WIN {
             return "No forces activated";
         } else {
             for (int i = 0; i < activeStarFleet.size(); i++) {
-                f += activeStarFleet.get(i).getForceName() + " , ";
+                f += activeStarFleet.get(i).getForceName() + "\n";
             }
         }
         return f;
@@ -322,7 +323,7 @@ public class SpaceWars implements WIN {
         String s = "\n************ All Battles ************\n";
         String f = "";
         for (int i = 0; i < battleList.size(); i++) {
-            f+=battleList.get(i).toString() + " , " ;
+            f += battleList.get(i).toString() + "\n" ;
 
         }
         return f;
