@@ -563,7 +563,7 @@ public class SpaceWars implements WIN {
         File file = new File(fname);
         try {
             Scanner scanner = new Scanner(file);
-            int counter = 0;
+            int counter = 1;
             while(scanner.hasNextLine()) {
                 Battle temp;
                 String line = scanner.nextLine();
