@@ -542,14 +542,41 @@ public class SpaceWars implements WIN {
       * @param =  name of the file
       */
 
-     private void readBattles(String fname) {
-         // TODO:: Read the file. Take each line of the file and pass each bit of the file to a constructor object, then add the object to battleList.
+     private BattleType matchEnum(String str) {
 
-
-
-
-         
+         if(str.equals("Skirmish")) {
+             return BattleType.SKIRMISH;
          }
+         else if(str.equals("Ambush")) {
+             return BattleType.AMBUSH;
+         }
+         else if(str.equals("Fight")) {
+             return BattleType.FIGHT;
+         }
+         else {
+             return null;
+         }
+     }
+
+    private void readBattles(String fname) {
+        // TODO:: Read the file. Take each line of the file and pass each bit of the file to a constructor object, then add the object to battleList
+        File file = new File(fname);
+        try {
+            Scanner scanner = new Scanner(file);
+            int counter = 0;
+            while(scanner.hasNextLine()) {
+                Battle temp;
+                String line = scanner.nextLine();
+                String items[] = line.split(",");
+                temp = new Battle(counter, matchEnum(items[0]), items[1], Integer.parseInt(items[2]), Integer.parseInt(items[3]), Integer.parseInt(items[4]));
+                battleList.add(temp);
+                counter++;
+            }
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        }
+    }
 
 }
 
