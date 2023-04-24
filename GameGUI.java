@@ -20,6 +20,9 @@ public class GameGUI
     private JButton fightBtn = new JButton("Fight");
     private JPanel eastPanel = new JPanel();
 
+    private JButton stateBtn = new JButton("View State");
+    private JButton clearBtn = new JButton("Clear");
+
     
     public GameGUI()
     {
@@ -43,8 +46,31 @@ public class GameGUI
         listForcesItem.addActionListener(new ListForcesHandler());
         forcesMenu.add(listForcesItem);
 
+        //list ActiveStarFleet
+        JMenuItem listASFleet = new JMenuItem("List Active Star Fleet");
+        listASFleet.addActionListener(new ListASFHandler());
+        forcesMenu.add(listASFleet);
+        //activate a force
+        JMenuItem activateForce = new JMenuItem("Activate a Force");
+        activateForce.addActionListener(new activateForceHandler());
+        forcesMenu.add(activateForce);
+        //recall a force
+        JMenuItem recallForce = new JMenuItem("Recall a Force");
+        recallForce.addActionListener(new recallForceHandler());
+        forcesMenu.add(recallForce);
 
+
+
+        //make Battle menu
+        JMenu battlesMenu = new JMenu("Battles");
+        menubar.add(battlesMenu);
+        //list all battles in listing
+        JMenuItem listAllBattles = new JMenuItem("List all Battles");
+        listAllBattles.addActionListener(new ListBattlesHandler());
+        battlesMenu.add(listAllBattles);
     }
+
+
     /**
      * Create the Swing frame and its content.
      */
@@ -59,6 +85,16 @@ public class GameGUI
         eastPanel.add(fightBtn);
         fightBtn.addActionListener(new FightBtnHandler());
         fightBtn.setVisible(true);
+
+        //add ViewState button to east panel
+        eastPanel.add(stateBtn);
+        stateBtn.addActionListener(new StateBtnHandler());
+        stateBtn.setVisible(true);
+
+        //add Clear button to east panel
+        eastPanel.add(clearBtn);
+        clearBtn.addActionListener(new ClearBtnHandler());
+        clearBtn.setVisible(true);
         
         // building is done - arrange the components and show        
         myFrame.pack();
@@ -77,6 +113,24 @@ public class GameGUI
         }
         return " no such fight ";
     }
+
+
+    /*
+        switch statement for activating a force
+     */
+    private String activation(int code)
+    {
+        switch (code)
+        {
+            case 0:return "force is activated";
+            case 1:return "force is not in the UFFDock";
+            case 2:return "not enough money";
+            case 3:return "no such force";
+            default: return "Error";
+        }
+    }
+
+
     
     private class ListForcesHandler implements ActionListener
     {
@@ -88,7 +142,76 @@ public class GameGUI
             
         }
     }
-    
+
+
+    /*
+     *     gets all forces in the ASF and displays in listing
+     */
+    private class ListASFHandler implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            listing.setVisible(true);
+            String xx = "Active Star Fleet:\n" + gp.getASFleet();
+            listing.setText(xx);
+        }
+    }
+
+
+
+    /*
+        activates a force and moves it to teh Active Star Fleet
+     */
+    private class activateForceHandler implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            int result;
+            String inputValue = JOptionPane.showInputDialog("Force reference ?: ");
+            result = gp.activateForce(inputValue);
+            JOptionPane.showMessageDialog(myFrame, activation(result));
+        }
+
+    }
+
+    /*
+        recalls a force from ASF and moves it to the dock
+     */
+    private class recallForceHandler implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            String inputValue = JOptionPane.showInputDialog("Force reference ?:");
+            //checks if force can be recalled
+            if (gp.isInASFleet(inputValue))
+            {
+                gp.recallForce(inputValue);
+                JOptionPane.showMessageDialog(myFrame, "Force Recalled");
+            }
+            else if (gp.isInUFFDock(inputValue))
+            {
+                JOptionPane.showMessageDialog(myFrame, "Force Already in Dock");
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(myFrame, "Error");
+            }
+        }
+    }
+
+
+    /*
+     *  gets all battles and displays in listing
+     */
+    private class ListBattlesHandler implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            listing.setVisible(true);
+            String xx = gp.getAllBattles();
+            listing.setText(xx);
+        }
+    }
     
     
     private class FightBtnHandler implements ActionListener
@@ -102,7 +225,35 @@ public class GameGUI
             JOptionPane.showMessageDialog(myFrame,fighting(result));    
         }
     }
+
+
+    /*
+        view state of game button
+     */
+    private class StateBtnHandler implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            listing.setVisible(true);
+            String xx = gp.toString();
+            listing.setText(xx);
+
+        }
+    }
+
     
+    /*
+        clears JTextArea listing
+     */
+    private class ClearBtnHandler implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            listing.setVisible(true);
+            String xx = " ";
+            listing.setText(xx);
+        }
+    }
  
     
     public static void main(String[] args)

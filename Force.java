@@ -6,7 +6,7 @@ public class Force implements Serializable {
 private String fleetReference;
 private String forceName;
 private int activationFee;
-private ForceState forceStatus;
+public ForceState forceStatus;
 private int battleStrength;
 public boolean hasCloak;
 
@@ -71,7 +71,7 @@ public void setState(ForceState type) {  forceStatus = type; }
      * @return = String that encompasses all the fields of the force object.
      */
     public String toString() {
-    return "Force Name: " + forceName + " Reference: " + fleetReference + " Strength: " + battleStrength + " Activation Fee: " + activationFee + " Cloak?: " + hasCloak;
+    return "Force Name: " + forceName + " Reference: " + fleetReference + " Strength: " + battleStrength + " Activation Fee: " + activationFee + " Cloak?: " + hasCloak + " Status: " + forceStatus.toString();
 }
 
 }

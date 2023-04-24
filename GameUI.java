@@ -19,7 +19,7 @@ public class GameUI
         int result = -1;
         System.out.println("Enter admiral's name:");
         String s = myIn.nextLine();
-        WIN gp = new SpaceWars(s);
+        WIN gp = new SpaceWars(s, "battles.txt");
         choice = 100;
         while (choice != 0 )
         {
@@ -81,7 +81,7 @@ public class GameUI
            else if (choice == 10) // Task 3.5 only
              {
                  System.out.println("Restore from file");
-                 gp = gp.restoreGame("olenka.txt");
+                 gp = gp.restoreGame("battles.txt");
                  System.out.println(gp.toString());
             }
         }  

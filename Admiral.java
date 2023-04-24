@@ -24,6 +24,6 @@ public void modifyWarChest(int value) { warChestFunds+= value; }
 
 // TODO:: Returns a String encapsulating all the Information about the Admiral.
 public String toString() {
-    return   "Admiral Name:" + admiralName + "Warchest Balance:" + warChestFunds;
+    return  "Admiral Name: " + admiralName + "\nWarchest Balance: " + warChestFunds;
 }
 }
